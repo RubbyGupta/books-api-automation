@@ -1,0 +1,4 @@
+Execution attempted with Java 17 and Maven 3.9.9.
+Maven could not resolve repo.maven.apache.org in this environment and could not download the build dependencies.
+Compilation and live API assertions have therefore NOT been verified.
+Run mvn test on your computer before submission.
