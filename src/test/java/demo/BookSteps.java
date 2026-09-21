@@ -18,9 +18,9 @@ public class BookSteps {
     @When("I request the books")
     public void requestBooks() {
         response = given().baseUri(baseUrl).when().get("/books");
-        System.out.println("Status: " + response.statusCode());
-        System.out.println("Time: " + response.time() + " ms");
-        System.out.println("Body size: " + response.asByteArray().length + " bytes");
+        System.out.println("Status:" + response.statusCode());
+        System.out.println("Time:" + response.time() + " ms");
+        System.out.println("Body size:" + response.asByteArray().length + " bytes");
     }
 
     @Then("the status code should be {int}")
@@ -36,7 +36,7 @@ public class BookSteps {
     @Then("the response body size should be greater than {int} bytes")
     public void checkSize(int minimum) {
         int bytes = response.asByteArray().length;
-        assertTrue("Actual body size: " + bytes + " bytes", bytes > minimum);
+        assertTrue("Actual body size:" + bytes + " bytes", bytes > minimum);
     }
 
     @Then("the response should contain {int} books")
