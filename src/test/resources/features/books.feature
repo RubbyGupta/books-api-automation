@@ -12,5 +12,5 @@ Feature: Books API
     And there should be 4 fiction books
     And there should be 5 available books
     And the book with ID 2 should be unavailable
-    And the book with ID 3 be like "The Vanishing Half"
+    And the book with ID 3 be "The Vanishing Half"
 

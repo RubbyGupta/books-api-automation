@@ -84,7 +84,7 @@ public class BookSteps {
         response.then().body("find { it.id == " + id + " }.available", equalTo(false));
     }
 
-    @Then("the book with ID {int} be like {string}")
+    @Then("the book with ID {int} be {string}")
     public void the_book_with_id_be_like(Integer id, String name) {
         response.then().body("find { it.id == " + id + " }.name", equalTo(name));
     }
