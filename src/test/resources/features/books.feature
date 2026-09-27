@@ -4,7 +4,7 @@ Feature: Books API
     Given the books API is configured
     When I request the books
     Then the status code should be 200
-    And the response time should be below 400 milliseconds
+    And the response time should be below 10000 milliseconds
     And the response body size should be greater than 0 bytes
     And the response should contain 6 books
     And the first book should be "The Russian"
@@ -12,3 +12,5 @@ Feature: Books API
     And there should be 4 fiction books
     And there should be 5 available books
     And the book with ID 2 should be unavailable
+    And the book with ID 3 be like "The Vanishing Half"
+

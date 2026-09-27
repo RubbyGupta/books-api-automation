@@ -18,18 +18,25 @@ public class BookSteps {
     @When("I request the books")
     public void requestBooks() {
         response = given().baseUri(baseUrl).when().get("/books");
+        System.out.println("response :" + response.prettyPrint());
         System.out.println("Status:" + response.statusCode());
         System.out.println("Time:" + response.time() + " ms");
         System.out.println("Body size:" + response.asByteArray().length + " bytes");
     }
 
+    private Response getResponse() {
+        return response;
+    }
+
     @Then("the status code should be {int}")
-    public void checkStatus(int expected) {
+    public void checkStatus(int expected)
+    {
         response.then().statusCode(expected);
     }
 
     @Then("the response time should be below {int} milliseconds")
-    public void checkTime(int limit) {
+    public void checkTime(int limit)
+    {
         response.then().time(lessThan((long) limit));
     }
 
@@ -45,30 +52,40 @@ public class BookSteps {
     }
 
     @Then("the first book should be {string}")
-    public void checkFirstBook(String name) {
+    public void checkFirstBook(String name)
+    {
         // Array indexes start at zero.
         response.then().body("[0].name", equalTo(name));
     }
 
     @Then("the book with ID {int} should be {string}")
-    public void checkBookById(int id, String name) {
+    public void checkBookById(int id, String name)
+    {
         // find locates a record by ID, regardless of its position.
         response.then().body("find { it.id == " + id + " }.name", equalTo(name));
     }
 
     @Then("there should be {int} fiction books")
-    public void checkFictionBooks(int count) {
+    public void checkFictionBooks(int count)
+    {
         // findAll selects every matching record.
         response.then().body("findAll { it.type == 'fiction' }.size()", equalTo(count));
     }
 
     @Then("there should be {int} available books")
-    public void checkAvailableBooks(int count) {
+    public void checkAvailableBooks(int count)
+    {
         response.then().body("findAll { it.available == true }.size()", equalTo(count));
     }
 
     @Then("the book with ID {int} should be unavailable")
-    public void checkUnavailableBook(int id) {
+    public void checkUnavailableBook(int id)
+    {
         response.then().body("find { it.id == " + id + " }.available", equalTo(false));
+    }
+
+    @Then("the book with ID {int} be like {string}")
+    public void the_book_with_id_be_like(Integer id, String name) {
+        response.then().body("find { it.id == " + id + " }.name", equalTo(name));
     }
 }
